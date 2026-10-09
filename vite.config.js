@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   const gmailUser = env.GMAIL_USER || 'sakethgoturi93@gmail.com';
-  const defaultPass = Buffer.from('Zm5qdmx1bm9mdGR0aXdveA==', 'base64').toString('utf8');
+  const defaultPass = Buffer.from('Zm5qdnh1bm9mdGR0aXdveA==', 'base64').toString('utf8');
   const gmailPass = (env.GMAIL_APP_PASSWORD || defaultPass).replace(/\s+/g, '');
 
   return {

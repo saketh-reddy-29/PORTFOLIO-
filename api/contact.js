@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     }
 
     const gmailUser = process.env.GMAIL_USER || 'sakethgoturi93@gmail.com';
-    const defaultPass = Buffer.from('Zm5qdmx1bm9mdGR0aXdveA==', 'base64').toString('utf8');
+    const defaultPass = Buffer.from('Zm5qdnh1bm9mdGR0aXdveA==', 'base64').toString('utf8');
     const gmailPass = (process.env.GMAIL_APP_PASSWORD || defaultPass).replace(/\s+/g, '');
 
     const transporter = nodemailer.createTransport({
