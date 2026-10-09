@@ -1,201 +1,128 @@
 export function renderContactView() {
   return `
-    <section class="editorial-sheet" id="sheet-contact-page" aria-label="Contact Page">
-      <!-- Sheet Top Metadata Strip -->
-      <div class="sheet-top-strip">
-        <div class="sheet-nav-items">
-          <a href="/" data-link>ENGINEERING</a>
-          <span>/</span>
-          <span style="color: #111;">COMMUNICATION</span>
-          <span>/</span>
-          <span>DIRECT TRANSMISSION CONSOLE</span>
-        </div>
-        <div class="sheet-num-tag">SHEET NO. 06 / 07 — CONTACT</div>
-      </div>
+    <section class="minimal-contact-section" id="sheet-contact-page" aria-label="Contact Page">
+      <div class="contact-editorial-container">
+        <!-- Hero Section -->
+        <header class="contact-hero">
+          <h1 class="contact-hero-heading">LET'S TALK.</h1>
+          <p class="contact-hero-desc">
+            Have a project in mind? I'm open to conversations about AI engineering, software development, industrial digital solutions, and interesting collaborations.
+          </p>
+        </header>
 
-      <!-- Live Telemetry Status Bar -->
-      <div class="contact-telemetry-bar">
-        <div class="telemetry-live-indicator">
-          <span class="telemetry-pulse-dot"></span>
-          <span class="telemetry-label">INBOX ROUTING: DIRECT TO SAKETHGOTURI93@GMAIL.COM</span>
-        </div>
-        <div class="telemetry-clock-tag">
-          <span class="telemetry-sub-k">ENGINEER LOCAL TIME:</span>
-          <span id="contact-live-clock" class="telemetry-sub-v">IST (UTC +5:30)</span>
-        </div>
-      </div>
+        <!-- Main Content Area: Two Column Layout -->
+        <div class="contact-content-grid">
+          <!-- Left Column: Contact Information -->
+          <div class="contact-info-col">
+            <h2 class="contact-col-heading">GET IN TOUCH</h2>
 
-      <!-- Main Headline Block -->
-      <div class="contact-hero-block">
-        <h1 class="contact-headline">
-          LET’S BUILD<br>
-          SOMETHING<br>
-          INTELLIGENT.
-        </h1>
-        <p class="contact-intro-lead">
-          Direct communication pipeline for AI/ML engineering, generative AI system design, enterprise web platforms, and specialized technical consultation. Every transmission lands directly in my personal inbox.
-        </p>
-      </div>
-
-      <div class="contact-layout-grid">
-        <!-- Left: Verified Direct Communication Channels -->
-        <div class="contact-channels-col">
-          <div class="contact-section-label">01 // DIRECT CHANNELS &amp; VERIFIED HANDLES</div>
-
-          <div class="contact-link-row">
-            <!-- Direct Primary Email -->
-            <div class="contact-direct-card">
-              <div class="direct-card-meta">
-                <span class="contact-label-tag">PRIMARY INBOX (VERIFIED)</span>
-                <span class="contact-tag-badge">DELIVERS INSTANTLY</span>
+            <div class="contact-links-list">
+              <!-- Email -->
+              <div class="contact-link-item">
+                <span class="contact-link-label">EMAIL</span>
+                <a href="mailto:sakethgoturi93@gmail.com" class="contact-link-value">
+                  <span>sakethgoturi93@gmail.com</span>
+                  <span class="contact-link-arrow">↗</span>
+                </a>
               </div>
-              <div class="contact-value-text" id="email-address-text">sakethgoturi93@gmail.com</div>
-              <div class="direct-card-actions">
-                <button id="btn-copy-email" class="btn-direct-action" title="Copy email address to clipboard">
-                  <span>COPY ADDRESS</span>
-                </button>
-                <a href="mailto:sakethgoturi93@gmail.com?subject=Project%20Inquiry%20-%20Saketh%20Reddy" class="btn-direct-action btn-direct-primary">
-                  <span>OPEN MAIL APP ↗</span>
+
+              <!-- LinkedIn -->
+              <div class="contact-link-item">
+                <span class="contact-link-label">LINKEDIN</span>
+                <a href="https://www.linkedin.com/in/saketh-reddy-goturi-a8660b319/" target="_blank" rel="noopener noreferrer" class="contact-link-value">
+                  <span>linkedin.com/in/saketh-reddy-goturi-a8660b319</span>
+                  <span class="contact-link-arrow">↗</span>
+                </a>
+              </div>
+
+              <!-- GitHub -->
+              <div class="contact-link-item">
+                <span class="contact-link-label">GITHUB</span>
+                <a href="https://github.com/saketh-reddy-29" target="_blank" rel="noopener noreferrer" class="contact-link-value">
+                  <span>github.com/saketh-reddy-29</span>
+                  <span class="contact-link-arrow">↗</span>
                 </a>
               </div>
             </div>
 
-            <!-- LinkedIn Profile -->
-            <a href="https://www.linkedin.com/in/saketh-reddy-goturi-a8660b319/" target="_blank" rel="noopener noreferrer" class="contact-direct-card contact-card-clickable">
-              <div class="direct-card-meta">
-                <span class="contact-label-tag">LINKEDIN PROFESSIONAL NETWORK</span>
-                <span class="contact-tag-badge">ACTIVE</span>
-              </div>
-              <div class="contact-value-text">linkedin.com/in/saketh-reddy-goturi-a8660b319 ↗</div>
-              <p class="direct-card-desc">Professional updates, engineering endorsements, and career chronology.</p>
-            </a>
-
-            <!-- GitHub Profile -->
-            <a href="https://github.com/saketh-reddy-29" target="_blank" rel="noopener noreferrer" class="contact-direct-card contact-card-clickable">
-              <div class="direct-card-meta">
-                <span class="contact-label-tag">GITHUB REPOSITORY DIRECTORY</span>
-                <span class="contact-tag-badge">CODE BASE</span>
-              </div>
-              <div class="contact-value-text">github.com/saketh-reddy-29 ↗</div>
-              <p class="direct-card-desc">Open-source software, full-stack architectures, and experimental models.</p>
-            </a>
-
-            <!-- Resume Trigger -->
-            <div class="contact-direct-card contact-card-clickable" id="trigger-resume-item" style="cursor: pointer;">
-              <div class="direct-card-meta">
-                <span class="contact-label-tag">CURRICULUM VITAE</span>
-                <span class="contact-tag-badge">SPECIFICATION</span>
-              </div>
-              <div class="contact-value-text">Launch Resume Specification Modal ↗</div>
-              <p class="direct-card-desc">Verified credentials, competencies matrix, and engineering experience.</p>
-            </div>
-
-            <!-- SLA & Location Assurance Box -->
-            <div class="contact-sla-box">
-              <div class="sla-row">
-                <span class="sla-k">RESPONSE GUARANTEE:</span>
-                <span class="sla-v">Within 24 Hours</span>
-              </div>
-              <div class="sla-row">
-                <span class="sla-k">ENGINEER LOCATION:</span>
-                <span class="sla-v">Hyderabad, India // Available Globally (Remote)</span>
-              </div>
-              <div class="sla-row">
-                <span class="sla-k">COMMUNICATION PROTOCOL:</span>
-                <span class="sla-v">Direct Gmail SMTP // TLS 1.3 Encryption</span>
-              </div>
-            </div>
+            <p class="contact-availability">
+              Based in Hyderabad, India · Available for remote collaboration.
+            </p>
           </div>
-        </div>
 
-        <!-- Right: Modern Architectural Transmission Console -->
-        <div class="contact-form-col">
-          <div class="contact-section-label">02 // DISPATCH ENCRYPTED INQUIRY</div>
+          <!-- Right Column: Project Inquiry Form -->
+          <div class="contact-form-col">
+            <h2 class="contact-col-heading">HAVE A PROJECT IN MIND?</h2>
+            <p class="contact-form-subtext">Tell me a little about what you're building.</p>
 
-          <div class="contact-console-container">
-            <div class="console-header-strip">
-              <div class="console-header-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <span class="console-title-tag">TRANSMISSION ENVELOPE // SMTP DISPATCH</span>
-              <span class="console-status-live">READY</span>
-            </div>
-
-            <form id="contact-form" class="arch-form console-form-body">
-              <input type="hidden" id="contact-category-input" name="category" value="Generative AI & LLM Systems">
-              <input type="hidden" id="contact-timeline-input" name="timeline" value="Immediate (< 2 Weeks)">
-
-              <!-- Interactive Specification Pills -->
-              <div class="form-group">
-                <label class="form-label">PROJECT SPECIFICATION</label>
-                <div class="interactive-pills-row" id="category-pills">
-                  <button type="button" class="spec-pill active" data-value="Generative AI & LLM Systems">GenAI &amp; LLMs</button>
-                  <button type="button" class="spec-pill" data-value="Industrial Web & Automation Platforms">Industrial Web</button>
-                  <button type="button" class="spec-pill" data-value="Computer Vision & Edge AI">Computer Vision</button>
-                  <button type="button" class="spec-pill" data-value="Full-Stack Web & Mobile App">Full-Stack / Mobile</button>
-                  <button type="button" class="spec-pill" data-value="Technical Architecture Consultation">Consultation</button>
-                </div>
+            <form id="contact-form" class="contact-inquiry-form" novalidate>
+              <!-- Name -->
+              <div class="form-field">
+                <label for="contact-name" class="field-label">Name <span class="required-mark">*</span></label>
+                <input 
+                  type="text" 
+                  id="contact-name" 
+                  name="name" 
+                  class="field-input" 
+                  placeholder="Your name" 
+                  required 
+                  autocomplete="name"
+                >
               </div>
 
-              <!-- Interactive Timeline Horizon Pills -->
-              <div class="form-group">
-                <label class="form-label">DELIVERY HORIZON</label>
-                <div class="interactive-pills-row" id="timeline-pills">
-                  <button type="button" class="spec-pill active" data-value="Immediate (< 2 Weeks)">Immediate (&lt; 2 Wks)</button>
-                  <button type="button" class="spec-pill" data-value="1 — 2 Months">1 — 2 Months</button>
-                  <button type="button" class="spec-pill" data-value="Long-Term Engineering">Long-Term</button>
-                  <button type="button" class="spec-pill" data-value="Flexible Scope">Flexible</button>
-                </div>
+              <!-- Email -->
+              <div class="form-field">
+                <label for="contact-email" class="field-label">Email <span class="required-mark">*</span></label>
+                <input 
+                  type="email" 
+                  id="contact-email" 
+                  name="email" 
+                  class="field-input" 
+                  placeholder="your.email@example.com" 
+                  required 
+                  autocomplete="email"
+                >
               </div>
 
-              <!-- Two Column Name & Email -->
-              <div class="form-dual-row">
-                <div class="form-group" style="flex: 1;">
-                  <label for="contact-name" class="form-label">YOUR NAME / ORGANIZATION *</label>
-                  <input type="text" id="contact-name" name="name" class="form-input" placeholder="e.g. Alex Mercer" required>
-                </div>
-
-                <div class="form-group" style="flex: 1;">
-                  <label for="contact-email" class="form-label">YOUR EMAIL ADDRESS *</label>
-                  <input type="email" id="contact-email" name="email" class="form-input" placeholder="alex@company.com" required>
+              <!-- Project Type Dropdown -->
+              <div class="form-field">
+                <label for="contact-project-type" class="field-label">Project type <span class="optional-mark">(optional)</span></label>
+                <div class="select-wrapper">
+                  <select id="contact-project-type" name="projectType" class="field-select">
+                    <option value="" selected>Select a project type (optional)</option>
+                    <option value="AI / Generative AI">AI / Generative AI</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="Industrial Digital Solutions">Industrial Digital Solutions</option>
+                    <option value="Desktop Application">Desktop Application</option>
+                    <option value="Full-Stack Development">Full-Stack Development</option>
+                    <option value="Other">Other</option>
+                  </select>
                 </div>
               </div>
 
-              <!-- Message Brief -->
-              <div class="form-group">
-                <label for="contact-message" class="form-label">PROJECT BRIEF &amp; OBJECTIVES *</label>
-                <textarea id="contact-message" name="message" class="form-textarea" rows="4" placeholder="Detail your project objectives, systems architecture requirements, or inquiry..." required></textarea>
+              <!-- Project Description -->
+              <div class="form-field">
+                <label for="contact-message" class="field-label">Project description <span class="required-mark">*</span></label>
+                <textarea 
+                  id="contact-message" 
+                  name="message" 
+                  class="field-textarea" 
+                  rows="5" 
+                  placeholder="Tell me about your project, timeline, and goals..." 
+                  required
+                ></textarea>
               </div>
 
-              <!-- Live Transmission Console Progress Banner -->
-              <div id="console-progress-box" class="console-progress-box" style="display: none;">
-                <div class="progress-step-row" id="progress-step-1">
-                  <span class="step-num">[01]</span>
-                  <span class="step-txt">Validating input parameters and formatting payload...</span>
-                </div>
-                <div class="progress-step-row" id="progress-step-2">
-                  <span class="step-num">[02]</span>
-                  <span class="step-txt">Connecting to Gmail SMTP gateway (sakethgoturi93@gmail.com)...</span>
-                </div>
-                <div class="progress-step-row" id="progress-step-3">
-                  <span class="step-num">[03]</span>
-                  <span class="step-txt">Securing transmission and delivering message...</span>
-                </div>
-              </div>
-
-              <!-- Action Submit Button -->
-              <div class="form-actions-row">
-                <button type="submit" id="btn-submit-inquiry" class="btn-form-submit">
-                  <span id="btn-submit-label">TRANSMIT INQUIRY DIRECTLY</span>
-                  <span>↗</span>
+              <!-- Primary Submit Button -->
+              <div class="form-submit-row">
+                <button type="submit" id="btn-submit-inquiry" class="btn-send-inquiry">
+                  <span id="btn-submit-label">SEND INQUIRY</span>
+                  <span class="btn-arrow">↗</span>
                 </button>
-                <span class="form-security-tag">DELIVERED TO SAKETHGOTURI93@GMAIL.COM</span>
               </div>
 
-              <!-- Feedback Result Container -->
-              <div id="form-feedback" class="form-feedback" aria-live="polite"></div>
+              <!-- Status Feedback Message -->
+              <div id="form-feedback" class="form-feedback" role="alert" aria-live="polite"></div>
             </form>
           </div>
         </div>

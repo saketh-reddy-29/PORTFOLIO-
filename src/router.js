@@ -218,137 +218,117 @@ export class Router {
     const feedback = document.getElementById('form-feedback');
     if (!form) return;
 
-    // 1. Live IST Clock
-    const clockEl = document.getElementById('contact-live-clock');
-    if (clockEl) {
-      const updateClock = () => {
-        try {
-          const now = new Date();
-          const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-          const istTime = new Intl.DateTimeFormat('en-IN', options).format(now);
-          clockEl.textContent = `IST ${istTime} (UTC +5:30)`;
-        } catch {
-          clockEl.textContent = `IST (UTC +5:30)`;
-        }
-      };
-      updateClock();
-      if (this.contactClockTimer) clearInterval(this.contactClockTimer);
-      this.contactClockTimer = setInterval(updateClock, 1000);
+    if (this.contactClockTimer) {
+      clearInterval(this.contactClockTimer);
+      this.contactClockTimer = null;
     }
 
-    // 2. Interactive Category Pills
-    const catInput = document.getElementById('contact-category-input');
-    const catPills = document.querySelectorAll('#category-pills .spec-pill');
-    catPills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        catPills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-        if (catInput) catInput.value = pill.getAttribute('data-value');
-      });
-    });
-
-    // 3. Interactive Timeline Pills
-    const timeInput = document.getElementById('contact-timeline-input');
-    const timePills = document.querySelectorAll('#timeline-pills .spec-pill');
-    timePills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        timePills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-        if (timeInput) timeInput.value = pill.getAttribute('data-value');
-      });
-    });
-
-    // 4. Form Submission with real Gmail delivery
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = document.getElementById('btn-submit-inquiry');
       const submitLabel = document.getElementById('btn-submit-label');
-      const progressBox = document.getElementById('console-progress-box');
-      const step1 = document.getElementById('progress-step-1');
-      const step2 = document.getElementById('progress-step-2');
-      const step3 = document.getElementById('progress-step-3');
 
       const name = form.querySelector('[name="name"]')?.value.trim();
       const email = form.querySelector('[name="email"]')?.value.trim();
-      const category = catInput?.value || 'General Software Engineering';
-      const timeline = timeInput?.value || 'Immediate (< 2 Weeks)';
+      const projectType = form.querySelector('[name="projectType"]')?.value || '';
       const message = form.querySelector('[name="message"]')?.value.trim();
 
-      if (!name || !email || !message) {
-        if (feedback) {
-          feedback.className = 'form-feedback error';
-          feedback.textContent = 'ERROR: ALL REQUIRED FIELDS MUST BE COMPLETED.';
-        }
+      // Clear previous feedback
+      if (feedback) {
+        feedback.className = 'form-feedback';
+        feedback.style.display = 'none';
+        feedback.textContent = '';
+      }
+
+      // 1. Validation
+      if (!name) {
+        this.displayFormError(feedback, 'Please enter your name.');
+        form.querySelector('[name="name"]')?.focus();
         return;
       }
 
-      // UI Loading state
+      if (!email) {
+        this.displayFormError(feedback, 'Please enter your email address.');
+        form.querySelector('[name="email"]')?.focus();
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        this.displayFormError(feedback, 'Please enter a valid email address.');
+        form.querySelector('[name="email"]')?.focus();
+        return;
+      }
+
+      if (!message) {
+        this.displayFormError(feedback, 'Please enter your project description.');
+        form.querySelector('[name="message"]')?.focus();
+        return;
+      }
+
+      // 2. Prevent duplicate submissions & show loading state
       if (submitBtn) submitBtn.disabled = true;
-      if (submitLabel) submitLabel.textContent = 'TRANSMITTING TO GMAIL...';
-      if (progressBox) progressBox.style.display = 'block';
-      if (step1) step1.className = 'progress-step-row active';
-      if (step2) step2.className = 'progress-step-row';
-      if (step3) step3.className = 'progress-step-row';
-      if (feedback) feedback.textContent = '';
+      if (submitLabel) submitLabel.textContent = 'SENDING INQUIRY...';
 
       try {
-        await new Promise(r => setTimeout(r, 400));
-        if (step1) step1.className = 'progress-step-row completed';
-        if (step2) step2.className = 'progress-step-row active';
-
-        // Dispatch to backend API
         const response = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, category, timeline, message })
+          body: JSON.stringify({
+            name,
+            email,
+            projectType,
+            category: projectType || 'General Inquiry',
+            message
+          })
         });
-
-        if (step2) step2.className = 'progress-step-row completed';
-        if (step3) step3.className = 'progress-step-row active';
 
         let result = {};
         try {
           result = await response.json();
         } catch {
-          // Non-JSON or static host response
+          // Non-JSON response
         }
 
         if (response.ok && result.success) {
-          if (step3) step3.className = 'progress-step-row completed';
           form.reset();
           if (feedback) {
             feedback.className = 'form-feedback success';
-            feedback.innerHTML = `✓ TRANSMISSION DELIVERED DIRECTLY TO SAKETHGOTURI93@GMAIL.COM [${result.timestamp || new Date().toLocaleTimeString()}]. I WILL RESPOND SHORTLY.`;
+            feedback.style.display = 'block';
+            feedback.textContent = 'Thank you. Your inquiry has been sent successfully. I will get back to you shortly.';
           }
-          this.showToast('EMAIL DISPATCHED TO SAKETH REDDY');
+          this.showToast('INQUIRY SENT SUCCESSFULLY');
         } else {
-          // If running in a purely static context (e.g. GitHub Pages without server)
-          // Fallback to client-side mailto with pre-composed payload
-          if (step3) step3.className = 'progress-step-row completed';
-          const mailtoUrl = `mailto:sakethgoturi93@gmail.com?subject=${encodeURIComponent(`[Portfolio] ${category} from ${name}`)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSpecification: ${category}\nTimeline: ${timeline}\n\nMessage:\n${message}`)}`;
-          window.location.href = mailtoUrl;
+          // If serverless endpoint returned an error or unreachable
+          const errMsg = result.error || 'Unable to send message via the server.';
+          console.warn('Contact API error:', errMsg);
 
+          // Graceful fallback option
           if (feedback) {
-            feedback.className = 'form-feedback success';
-            feedback.innerHTML = `TRANSMISSION ENVELOPE PREPARED &amp; DISPATCHED TO SAKETHGOTURI93@GMAIL.COM.`;
+            feedback.className = 'form-feedback error';
+            feedback.style.display = 'block';
+            feedback.innerHTML = `Could not deliver directly via server. Please email me at <a href="mailto:sakethgoturi93@gmail.com" style="color: inherit; text-decoration: underline;">sakethgoturi93@gmail.com</a>.`;
           }
-          this.showToast('TRANSMISSION INITIATED');
         }
       } catch (err) {
-        console.warn('Direct API unavailable, engaging client mailto fallback:', err);
-        const mailtoUrl = `mailto:sakethgoturi93@gmail.com?subject=${encodeURIComponent(`[Portfolio] ${category} from ${name}`)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSpecification: ${category}\nTimeline: ${timeline}\n\nMessage:\n${message}`)}`;
-        window.location.href = mailtoUrl;
-
+        console.error('Contact submission network error:', err);
         if (feedback) {
-          feedback.className = 'form-feedback success';
-          feedback.innerHTML = `ROUTED TO SAKETHGOTURI93@GMAIL.COM VIA CLIENT APPLICATION.`;
+          feedback.className = 'form-feedback error';
+          feedback.style.display = 'block';
+          feedback.innerHTML = `Network issue. Please email me directly at <a href="mailto:sakethgoturi93@gmail.com" style="color: inherit; text-decoration: underline;">sakethgoturi93@gmail.com</a>.`;
         }
-        this.showToast('DISPATCHED VIA CLIENT INBOX');
       } finally {
         if (submitBtn) submitBtn.disabled = false;
-        if (submitLabel) submitLabel.textContent = 'TRANSMIT INQUIRY DIRECTLY';
+        if (submitLabel) submitLabel.textContent = 'SEND INQUIRY';
       }
     });
+  }
+
+  displayFormError(feedbackEl, message) {
+    if (!feedbackEl) return;
+    feedbackEl.className = 'form-feedback error';
+    feedbackEl.style.display = 'block';
+    feedbackEl.textContent = message;
   }
 
   showToast(message) {

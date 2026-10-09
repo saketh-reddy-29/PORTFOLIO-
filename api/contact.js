@@ -16,7 +16,8 @@ export default async function handler(req, res) {
 
   try {
     const data = req.body || {};
-    const { name, email, category, timeline, message } = data;
+    const { name, email, projectType, category, timeline, message } = data;
+    const chosenType = projectType || category || 'General Inquiry';
 
     if (!name || !email || !message) {
       return res.status(400).json({ error: 'Name, email, and message are required' });
@@ -35,29 +36,29 @@ export default async function handler(req, res) {
     });
 
     const mailOptions = {
-      from: `"Portfolio Lead: ${name}" <${gmailUser}>`,
+      from: `"Portfolio Inquiry: ${name}" <${gmailUser}>`,
       to: gmailUser,
       replyTo: email,
-      subject: `[Portfolio Inquiry] ${category || 'General Influx'} from ${name}`,
+      subject: `[Portfolio Inquiry] ${chosenType} from ${name}`,
       html: `
-        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 28px; border: 2px solid #111111; background-color: #ffffff;">
-          <div style="border-bottom: 2px solid #111111; padding-bottom: 14px; margin-bottom: 20px;">
-            <span style="font-size: 10px; font-family: monospace; letter-spacing: 0.14em; color: #666666; text-transform: uppercase;">TRANSMISSION LOG // SAKETH REDDY PORTFOLIO</span>
-            <h2 style="margin: 6px 0 0 0; color: #111111; font-size: 22px; font-weight: 800; letter-spacing: -0.02em;">New Engineering Project Inquiry</h2>
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 28px; border: 1px solid #e5e5e5; background-color: #ffffff;">
+          <div style="border-bottom: 1px solid #e5e5e5; padding-bottom: 14px; margin-bottom: 20px;">
+            <span style="font-size: 11px; font-family: monospace; letter-spacing: 0.1em; color: #777777; text-transform: uppercase;">SAKETH REDDY // PORTFOLIO INQUIRY</span>
+            <h2 style="margin: 6px 0 0 0; color: #111111; font-size: 20px; font-weight: 700;">New Project Inquiry</h2>
           </div>
           
-          <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 13px;">
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 14px;">
             <tr>
-              <td style="padding: 10px 0; color: #777777; width: 140px; font-family: monospace; font-size: 11px; text-transform: uppercase;">Sender Name:</td>
-              <td style="padding: 10px 0; color: #111111; font-weight: 700; font-size: 15px;">${name}</td>
+              <td style="padding: 8px 0; color: #777777; width: 140px; font-size: 12px; text-transform: uppercase; font-family: monospace;">Name:</td>
+              <td style="padding: 8px 0; color: #111111; font-weight: 600;">${name}</td>
             </tr>
             <tr>
-              <td style="padding: 10px 0; color: #777777; font-family: monospace; font-size: 11px; text-transform: uppercase;">Direct Email:</td>
-              <td style="padding: 10px 0; color: #111111;"><a href="mailto:${email}" style="color: #111111; font-weight: 600; text-decoration: underline;">${email}</a></td>
+              <td style="padding: 8px 0; color: #777777; font-size: 12px; text-transform: uppercase; font-family: monospace;">Email:</td>
+              <td style="padding: 8px 0; color: #111111;"><a href="mailto:${email}" style="color: #111111; text-decoration: underline;">${email}</a></td>
             </tr>
             <tr>
-              <td style="padding: 10px 0; color: #777777; font-family: monospace; font-size: 11px; text-transform: uppercase;">Specification:</td>
-              <td style="padding: 10px 0; color: #111111; font-weight: 600;">${category || 'General Software Engineering'}</td>
+              <td style="padding: 8px 0; color: #777777; font-size: 12px; text-transform: uppercase; font-family: monospace;">Project Type:</td>
+              <td style="padding: 8px 0; color: #111111; font-weight: 500;">${chosenType}</td>
             </tr>
             ${timeline ? `
             <tr>
