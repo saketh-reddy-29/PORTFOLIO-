@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G. Saketh Reddy | Minimalist Architecture-Style Developer Portfolio</title>
+  <meta name="description"
+    content="Editorial multi-page portfolio of G. Saketh Reddy — AI/ML Engineer and Software Developer showcasing real industrial websites, interactive simulation software, desktop utilities, and AI applications.">
+  <meta name="keywords"
+    content="Saketh Reddy, AI/ML Engineer, Software Developer, Architecture Style Portfolio, TechBott, Mectto, Coastal Fabtech, Crex Arena, LLM, RAG">
+  <meta name="author" content="G. Saketh Reddy">
+
+  <!-- Open Graph Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="G. Saketh Reddy | AI/ML Engineer & Software Developer">
+  <meta property="og:description"
+    content="Minimalist architecture-inspired multi-page developer portfolio showcasing industrial platforms, game systems, and generative AI.">
+  <meta property="og:image"
+    content="/assets/hero-cyber.jpg">
+  <meta name="theme-color" content="#cccccc">
+
+  <!-- Favicon Monogram -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111111'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' fill='%23ffffff' font-family='sans-serif' font-weight='bold' font-size='13'%3ESR%3C/text%3E%3C/svg%3E">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="./src/styles.css">
+</head>
+
+<body>
+
+  <!-- ============================================================ -->
+  <!-- 1. STICKY ARCHITECTURAL HEADER & NAVIGATION                  -->
+  <!-- ============================================================ -->
+  <header class="arch-header" id="arch-header">
+    <div class="arch-header-inner">
+      <!-- Monogram Brand Identity -->
+      <a href="/" class="arch-brand" data-link aria-label="Saketh Reddy Home">
+        <div class="arch-monogram">GSR</div>
+        <div>
+          <span class="arch-brand-name">SAKETH REDDY</span>
+          <span class="arch-brand-role">/ AI/ML ENGINEER</span>
+        </div>
+      </a>
+
+      <!-- Desktop Editorial Navigation Labels -->
+      <nav class="arch-nav" aria-label="Main Navigation">
+        <a href="/" class="arch-nav-link active" data-link>ENGINEERING</a>
+        <a href="/projects" class="arch-nav-link" data-link>INDEX</a>
+        <a href="/about" class="arch-nav-link" data-link>ABOUT</a>
+        <a href="/experience" class="arch-nav-link" data-link>EXPERIENCE</a>
+        <a href="/contact" class="arch-nav-link" data-link>CONTACT</a>
+      </nav>
+
+      <!-- Action & Mobile Toggle -->
+      <div class="arch-header-actions">
+        <a href="/contact" class="btn-arch-talk" data-link>
+          <span>LET'S TALK</span>
+          <span>↗</span>
+        </a>
+        <button id="mobile-toggle-btn" class="mobile-nav-toggle" aria-label="Toggle navigation drawer">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="arch-mobile-drawer" class="arch-mobile-drawer">
+    <div class="mobile-drawer-top">
+      <div class="arch-brand">
+        <div class="arch-monogram">GSR</div>
+        <span class="arch-brand-name">SAKETH REDDY</span>
+      </div>
+      <button id="mobile-drawer-close" class="mobile-close-btn" aria-label="Close menu">&times;</button>
+    </div>
+    <nav class="mobile-drawer-links">
+      <a href="/" class="mobile-drawer-link" data-link>01 // ENGINEERING (COVER)</a>
+      <a href="/projects" class="mobile-drawer-link" data-link>02 // INDEX / CONTENT</a>
+      <a href="/about" class="mobile-drawer-link" data-link>03 // ABOUT PROFILE</a>
+      <a href="/experience" class="mobile-drawer-link" data-link>04 // EXPERIENCE &amp; CHRONOLOGY</a>
+      <a href="/contact" class="mobile-drawer-link" data-link>05 // CONTACT &amp; INQUIRIES</a>
+    </nav>
+    <div
+      style="margin-top: auto; padding-top: 24px; border-top: 1px solid #e5e5e5; font-family: var(--font-mono); font-size: 10px; color: #777;">
+      SAKETHGOTURI93@GMAIL.COM
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 2. MAIN EDITORIAL CANVAS (WHITE SHEETS ON GRAY CANVAS)       -->
+  <!-- ============================================================ -->
+  <main class="portfolio-canvas" id="app-viewport">
+    <!-- Rendered dynamically by Router based on active URL -->
+  </main>
+
+  <!-- ============================================================ -->
+  <!-- 3. FOOTER                                                    -->
+  <!-- ============================================================ -->
+  <footer class="arch-footer">
+    <div>
+      © 2026 G. SAKETH REDDY // AI/ML &amp; SOFTWARE DEVELOPER // HYDERABAD, INDIA
+    </div>
+    <div style="display: flex; gap: 24px; align-items: center;">
+      <span>DESIGN: ARCHITECTURAL MONOGRAPH REFERENCE</span>
+      <a href="#arch-header" style="color: #111; font-weight: 700;">TOP ↑</a>
+    </div>
+  </footer>
+
+  <!-- ============================================================ -->
+  <!-- 4. RESUME PREVIEW MODAL                                      -->
+  <!-- ============================================================ -->
+  <div id="resume-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="resume-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <span
+            style="font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); text-transform: uppercase;">CURRICULUM
+            VITAE SPECIFICATION</span>
+          <h3 id="resume-modal-title" style="font-size: 1.3rem; font-weight: 700; color: #111;">G. Saketh Reddy —
+            Engineering Resume</h3>
+        </div>
+        <button id="resume-modal-close" class="modal-close-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="font-size: 13px; color: #333; line-height: 1.65; display: flex; flex-direction: column; gap: 20px;">
+          <div>
+            <h4
+              style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: #111; border-bottom: 1px solid #e5e5e5; padding-bottom: 4px; margin-bottom: 8px;">
+              1. Professional Profile</h4>
+            <p>AI/ML Engineer and Software Developer with demonstrated experience in developing end-to-end machine
+              learning pipelines, generative AI applications with LLMs and RAG, edge computer vision systems with
+              YOLOv8, and high-performance full-stack web and mobile applications.</p>
+          </div>
+
+          <div>
+            <h4
+              style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: #111; border-bottom: 1px solid #e5e5e5; padding-bottom: 4px; margin-bottom: 8px;">
+              2. Core Competencies</h4>
+            <p><strong>Languages:</strong> Python, JavaScript, TypeScript, SQL, Dart<br>
+              <strong>AI/ML &amp; GenAI:</strong> PyTorch, OpenCV, YOLOv8, LLM APIs (Gemini, Claude, GPT), RAG, Vector
+              Stores (Qdrant, ChromaDB), Prompt Engineering, Agentic Workflows<br>
+              <strong>Full-Stack &amp; Mobile:</strong> React, Vite, Node.js, Express, Capacitor, Flutter, Prisma ORM,
+              REST APIs, WebSockets<br>
+              <strong>Databases &amp; DevOps:</strong> SQL Server, MySQL, SQLite, Git, Docker, Playwright, Ollama
+            </p>
+          </div>
+
+          <div>
+            <h4
+              style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: #111; border-bottom: 1px solid #e5e5e5; padding-bottom: 4px; margin-bottom: 8px;">
+              3. Professional Experience</h4>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div>
+                <strong>Prompt Engineering Research &amp; Integration Intern</strong> — Excelerate (Dubai · Remote | Jan
+                2026 – Mar 2026)<br>
+                <span style="font-size: 12px; color: #555;">Designed and optimized advanced prompts for LLMs (ChatGPT,
+                  Google Gemini), improving accuracy, contextual coherence, and consistency across content generation
+                  and automation pipelines. Developed robust prompt workflows and applied NLP techniques for task
+                  completion.</span>
+              </div>
+              <div>
+                <strong>Software Developer</strong> — Mectto (Remote | 2026 – Present)<br>
+                <span style="font-size: 12px; color: #555;">Architecting digital web platforms and equipment
+                  specification catalogs for industrial robotics and smart factory automation, featuring interactive
+                  machinery solution finders and RFQ quotation pipelines.</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h4
+              style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: #111; border-bottom: 1px solid #e5e5e5; padding-bottom: 4px; margin-bottom: 8px;">
+              4. Verified Project Systems</h4>
+            <ul style="padding-left: 20px;">
+              <li><strong>Industrial Web Platforms:</strong> TechBott India, Mectto Automation, Coastal Fabtech API 650.
+              </li>
+              <li><strong>Interactive Engines:</strong> Crex Arena stochastic cricket simulation engine (10,000+
+                balls/s).</li>
+              <li><strong>Desktop &amp; AI Systems:</strong> Gloster Desktop Application, AI-Powered Website Builder,
+                HRMS Field Attendance.</li>
+            </ul>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-top: 10px; padding-top: 16px; border-top: 1px solid #e5e5e5;">
+            <a href="mailto:sakethgoturi93@gmail.com?subject=Resume%20Inquiry%20-%20Saketh%20Reddy"
+              class="btn-cover-primary">
+              REQUEST FULL RESUME (PDF) ↗
+            </a>
+            <a href="https://www.linkedin.com/in/saketh-reddy-goturi-a8660b319/" target="_blank"
+              rel="noopener noreferrer" class="btn-cover-secondary">
+              VIEW LINKEDIN PROFILE ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Main JavaScript Bundle -->
+  <script type="module" src="./src/main.js"></script>
+</body>
+
+</html>
